@@ -4,6 +4,8 @@ function panel__getControlField(e = 'img', t = !1) {
 
 tn_uploadImageToTilda(imgUrl, e);
 
+// https://chatgpt.com/c/67b20815-6574-800b-9173-64485c77c5c2
+
 // test data
 // _ - figma img url
 // o - [data-field-bgimg-value*='figma-alpha'] id
