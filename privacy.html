@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Privacy Policy — Tilda Image Uploader</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        margin: 36px;
+        color: #111;
+      }
+      h1 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      p {
+        margin: 10px 0;
+      }
+      pre {
+        background: #f6f8fa;
+        padding: 12px;
+        border-radius: 6px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy Policy — Tilda Image Uploader</h1>
+    <p>Last updated: 2025-11-06</p>
+
+    <h2>Summary</h2>
+    <p>
+      Tilda Image Uploader is a small Chrome extension that helps transfer images from Figma URLs to the Tilda upload
+      API and updates image references inside the Tilda editor. The extension does not collect or transmit personal user
+      data to third-party analytics or storage services.
+    </p>
+
+    <h2>What data the extension accesses</h2>
+    <p>
+      The extension operates inside the Tilda editor page and accesses only the information necessary to complete the
+      upload flow:
+    </p>
+    <ul>
+      <li>
+        Public image URLs present in page elements (for example Figma-hosted URLs found in attributes like
+        <code>data-field-bgimg-value</code>).
+      </li>
+      <li>
+        Page-scoped variables exposed by the Tilda editor (for example <code>Tildaupload_PUBLICKEY</code> and
+        <code>Tildaupload_UPLOADKEY</code>) so it can call the Tilda upload API from the page context.
+      </li>
+      <li>
+        Temporary UI state stored locally (optional) using the browser's extension storage to improve UX (no personal
+        data).
+      </li>
+    </ul>
+
+    <h2>Network requests and servers</h2>
+    <p>
+      The extension performs POST requests to the Tilda upload endpoint:
+      <code>https://upload.tildacdn.com/api/upload/</code> to transfer image data and receive a CDN URL in response. It
+      does not forward image data to any other third-party servers or analytics platforms.
+    </p>
+
+    <h2>Data retention & storage</h2>
+    <p>
+      No user-identifying data is collected or stored on external servers by this extension. Any minimal settings saved
+      with the extension storage remain in the user's browser and are not transmitted.
+    </p>
+
+    <h2>Security & remote code</h2>
+    <p>
+      All JavaScript shipped with the extension is packaged inside the extension bundle. The extension does not download
+      and execute external JavaScript code at runtime. Network requests are limited to the domains required for
+      operation (Tilda upload API, Tilda editor pages and public image URLs).
+    </p>
+
+    <h2>Contact & support</h2>
+    <p>Support / Issues: <a href="https://github.com/sasha-o6/tilda-auto-changer-img/issues">GitHub Issues</a></p>
+
+    <hr />
+    <p style="font-size: 13px; color: #666">
+      If you need a copy of this policy hosted on GitHub Pages, enable Pages for this repository (branch:
+      <code>main</code>, folder: <code>/ (root)</code>). The expected URL will be:<br />
+      <strong>https://sasha-o6.github.io/tilda-auto-changer-img/privacy.html</strong>
+    </p>
+  </body>
+</html>
