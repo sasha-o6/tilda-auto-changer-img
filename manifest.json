@@ -4,10 +4,10 @@
   "version": "1.0",
   "description": "Autotransfer from figma to tilda server for image",
   "permissions": ["scripting", "storage"],
-  "host_permissions": ["<all_urls>", "*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"],
+  "host_permissions": ["*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"],
   "content_scripts": [
     {
-      "matches": ["<all_urls>", "*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"],
+      "matches": ["*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
@@ -15,7 +15,7 @@
   "web_accessible_resources": [
     {
       "resources": ["injected.js"],
-      "matches": ["<all_urls>", "*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"]
+      "matches": ["*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"]
     }
   ],
   "action": {
