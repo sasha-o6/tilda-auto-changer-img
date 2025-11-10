@@ -1,9 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Tilda Image Uploader",
-  "version": "1.0",
+  "version": "2.1",
   "description": "Autotransfer from figma to tilda server for image",
-  "permissions": ["scripting", "storage"],
   "host_permissions": ["*://*.tilda.cc/*", "*://tilda.cc/*", "*://*.tilda.ru/*", "*://tilda.ru/*"],
   "content_scripts": [
     {
