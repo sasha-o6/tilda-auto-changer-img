@@ -6,11 +6,14 @@ const uploadAllImages = () => {
 
   Promise.all(allImagesElements.map((el, index) => changeImg(el, index, allImagesElements.length)))
     .then(() => {
-      console.log('finish');
       if (errorElements.length > 0) {
         onErrorImages.addErrorButton();
       } else {
-        alert("Please click 'Save' button.");
+        setTimeout(() => {
+          ab__saveToDataBase('');
+          alert('Importing is finished successfully. Thank you!');
+          // alert('Please reload the page and make sure that all is okay.');
+        }, 0);
       }
     })
     .catch((err) => alert('Unspecified error. Contact the plugin developer.'))
@@ -26,6 +29,7 @@ const changeImg = (el, index, allImagesElementsLength) => {
     tn_uploadImageToTilda(attr, (e) => {
       if (!e.error) {
         el.setAttribute(bgimgAttrName, e.cdnUrl);
+        elem__setFieldValue(el, 'bgimg', e.cdnUrl);
 
         const child = el.querySelector("[style*='figma-alpha']");
         if (child) {
@@ -37,14 +41,15 @@ const changeImg = (el, index, allImagesElementsLength) => {
         const filtered = array.filter((word) => word != 'amazonsrc');
 
         el.setAttribute('data-fields', filtered.join(','));
+        elem__emptyField(el, 'amazonsrc');
 
         el.removeAttribute('data-field-amazonsrc-value');
-
-        // resolve(e);
+        tn_updateOutlineDescription();
+        figma__checkAmazonImages();
+        tn_set_lastChanges();
       } else {
-        console.log('error: ', e.error);
+        console.error('error: ', e.error);
         errorElements.push(el);
-        // reject(e.error);
       }
       resolve(e);
     });
@@ -66,7 +71,8 @@ const onErrorImages = {
         button.innerText = `[${errorElements.length}] Next ->`;
       } else {
         button.remove();
-        alert("Please click 'Save' button.");
+        ab__saveToDataBase('');
+        // alert("Please click 'Save' button.");
       }
     });
 
@@ -83,9 +89,9 @@ const addButton = () => {
     return;
   }
 
-  // if (document.querySelectorAll("[data-field-bgimg-value*='figma-alpha']").length < 1) {
-  //   console.error("element didn't find");
-  //   return;
+  // if (!(document.querySelectorAll("[data-field-bgimg-value*='figma-alpha']").length > 0)) {
+  //   // console.error("element didn't find");
+  //   // return;
   // }
 
   const button = document.createElement('button');
@@ -111,7 +117,13 @@ const addButton = () => {
     document.querySelector('.tn-mainmenu__leftside')?.appendChild(button);
   }
 };
-if (window.location.host == 'tilda.cc' || window.location.host == 'tilda.ru') {
+
+if (
+  (window.location.host == 'tilda.cc' || window.location.host == 'tilda.ru') &&
+  window.location.href.includes('/zero/')
+  // &&
+  // document.querySelectorAll("[data-field-bgimg-value*='figma-alpha']").length > 0
+) {
   // Додаємо кнопку після завантаження сторінки
   document.addEventListener('DOMContentLoaded', addButton);
   addButton();
