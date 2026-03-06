@@ -1,5 +1,5 @@
 {
-  "manifest_version": 4,
+  "manifest_version": 3,
   "name": "Tilda Image Uploader",
   "version": "2.3",
   "description": "Autotransfer from figma to tilda server for image",
